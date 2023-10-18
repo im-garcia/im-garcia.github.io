@@ -167,6 +167,10 @@ body{
 }
 
 @media only screen and (max-width: 730px){
+
+    .header .search-box input {
+        width: 100%;
+    }
     .future-forecast{
         justify-content: start;
         align-items: none;
