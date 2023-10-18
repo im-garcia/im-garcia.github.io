@@ -11,7 +11,58 @@ body{
     background: linear-gradient(90deg, rgba(28,116,255,1) 0%, rgba(0,212,255,1) 100%);
 }
 
+.header {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 30px 0 30px;
+}
 
+.header .search-box {
+    display: flex;
+    background: rgba(134, 134, 198, 0.4);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.header .search-box input {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    margin-right: 10px;
+    width: 600px;
+}
+
+.header .search-box button {
+    background: rgba(134, 134, 198, 0.6);
+    border: 1px solid #fff;
+    border-radius: 10px;
+    padding: 8px 15px;
+    color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.header .search-box button:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+}
+
+.header .install-btn {
+    background: rgba(134, 134, 198, 0.6);
+    border: 1px solid #fff;
+    border-radius: 10px;
+    padding: 8px 15px;
+    color: #fff;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.header .install-btn:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: #333;
+}
 .current-info{
     display: flex;
     justify-content: space-between;
@@ -37,11 +88,11 @@ body{
 }
 
 .place-container .time-zone{
-    font-size: 30px;
+    font-size: 50px;
 }
 
 .place-container .country{
-    font-size: 12px;
+    font-size: 20px;
 }
 
 .current-info .others{

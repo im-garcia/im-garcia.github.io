@@ -210,5 +210,49 @@ setInterval(() => {
     dateEl.innerHTML = `${days[day]}, ${date} de ${months[month].toLowerCase()}`;
 }, 1000);
 
+window.addEventListener('beforeinstallprompt', (event) => {
+    // Previene que el navegador muestre el mensaje predeterminado de instalación
+    event.preventDefault();
+  
+    // Guarda el evento para usarlo más adelante
+    window.deferredPrompt = event;
+  
+    // Muestra tu propio botón o banner de instalación
+    mostrarBotonInstalacion();
+  });
+  
+  function mostrarBotonInstalacion() {
+    // Muestra tu propio botón o banner de instalación
+    const botonInstalacion = document.getElementById('install-btn');
+  
+    if (botonInstalacion) {
+      botonInstalacion.style.display = 'block';
+      botonInstalacion.addEventListener('click', () => {
+        // Muestra el mensaje de instalación cuando el botón es clicado
+        const deferredPrompt = window.deferredPrompt;
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+  
+          // Espera a que el usuario responda
+          deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+              console.log('Usuario aceptó la instalación');
+            } else {
+              console.log('Usuario rechazó la instalación');
+            }
+  
+            // Limpia el evento
+            window.deferredPrompt = null;
+          });
+        }
+      });
+    }
+  }
+  
+  // Verifica si la aplicación ya está instalada
+  window.addEventListener('appinstalled', (event) => {
+    console.log('La aplicación fue instalada.');
+  });
+  
 // Obtener datos meteorológicos al cargar la página
 getWeatherData();
