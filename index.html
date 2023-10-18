@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json"> 
+    <title>Weather-PWA</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
+</head>
+<body>
+<!--  <div class="search-box">    -->
+<!--      <input type="text" placeholder="Buscá por ciudad">   -->
+<!--      <button type="submit">Buscar</button>   -->
+<!--  </div>   -->
+
+    <div class="current-info">
+
+        <div class="date-container">
+            <div class="time" id="time">
+                12:30 <span id="am-pm">PM</span>
+            </div>
+            <div class="date" id="date">
+                Jueves, 15 de octubre
+            </div>
+            <div class="others" id="current-weather-items">
+                
+            </div>
+        </div>
+
+        <div class="place-container">
+            <div class="time-zone" id="time-zone">Buenos Aires</div>
+                <div class="country" id="country">ARG</div>
+        </div>
+
+    </div>
+        
+    <div class="future-forecast">
+        <div class="today" id="current-temp">
+            
+        </div>
+        <div class="weather-forecast" id="weather-forecast">
+            <div class="weather-forecast-item">
+                <div class="day">Martes</div>
+                <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+                <div class="temp">Noche - 25.6&#176; C</div>
+                <div class="temp">Día - 25.6&#176; C</div>
+            </div>
+            <div class="weather-forecast-item">
+                <div class="day">Martes</div>
+                <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+                <div class="temp">Noche - 25.6&#176; C</div>
+                <div class="temp">Día - 25.6&#176; C</div>
+            </div>
+            <div class="weather-forecast-item">
+                <div class="day">Martes</div>
+                <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+                <div class="temp">Noche - 25.6&#176; C</div>
+                <div class="temp">Día - 25.6&#176; C</div>
+            </div>
+            <div class="weather-forecast-item">
+                <div class="day">Martes</div>
+                <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+                <div class="temp">Noche - 25.6&#176; C</div>
+                <div class="temp">Día - 25.6&#176; C</div>
+            </div>
+            <div class="weather-forecast-item">
+                <div class="day">Martes</div>
+                <img src="https://openweathermap.org/img/wn/10d@2x.png" alt="weather icon" class="w-icon">
+                <div class="temp">Noche - 25.6&#176; C</div>
+                <div class="temp">Día - 25.6&#176; C</div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+          navigator.serviceWorker
+            .register('/service-worker.js')
+            .then((registration) => {
+              console.log('Service Worker registrado con éxito:', registration);
+            })
+            .catch((error) => {
+              console.log('Error al registrar el Service Worker:', error);
+            });
+        }
+      </script>
+      
+</body>
+</html>
