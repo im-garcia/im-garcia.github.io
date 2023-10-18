@@ -26,7 +26,7 @@ searchEl.addEventListener("keypress",function(event){
 })
 
 buttonEl.addEventListener("click", function(){
-    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchEl.value}&appid=4d4211a7206df1505bb64b08d835c07e`)
+    fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${searchEl.value}&appid=4d4211a7206df1505bb64b08d835c07e`)
         .then(res => res.json())
         .then(data => {
             console.log(data);

@@ -171,10 +171,8 @@ body{
     .header .search-box input {
         width: 100%;
     }
+    
     .future-forecast{
-        justify-content: start;
-        align-items: none;
-        overflow-x: scroll;
     }
 
     .current-info{
@@ -191,17 +189,23 @@ body{
     .date-container .date{
         font-size: 20px;
     }
-    
+
     .future-forecast .today{
         font-size: 20px;
     }
     
+    .header .install-btn {
+        font-size: 15px;
+        margin: 15px 0px 0px 10px;
+    }
+    .header {
+        margin: 5px 15px 0 15px;
+    }
 }
 
 @media only screen and (max-width: 1000px){
     .future-forecast{
         justify-content: start;
-        align-items: none;
         overflow-x: scroll;
     }
 }
