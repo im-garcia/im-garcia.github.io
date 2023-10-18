@@ -1,6 +1,6 @@
 {
-    "name": "Weather-PWA",
-    "short_name": "Weather",
+    "name": "Tiempo-PWA",
+    "short_name": "Tiempo-PWA",
     "description": "Simple aplicación para saber el tiempo actual y dentro de 5 días de tu ubicación actual.",
     "start_url": "/",
     "display": "standalone",
