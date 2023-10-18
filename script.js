@@ -68,12 +68,14 @@ function showWeatherData(data) {
         </div>`;
 
     currentTempEl.innerHTML = `
+    <div class="today">
         <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="weather icon" class="w-icon">
         <div class="other">
             <div class="day">${convertTimeStampToDay(unixTimeStamp, timezone)}</div>
             <div class="temp">${temp}&#176;C</div>
             <div class="temp">ST ${feels_like}&#176;C</div>
-        </div>`;
+        </div>
+    </div>` + currentTempEl.innerHTML;
 }
 
 // Función para mostrar datos del pronóstico del tiempo
