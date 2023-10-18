@@ -191,14 +191,7 @@ body{
     .date-container .date{
         font-size: 20px;
     }
-
-    .place-container .time-zone{
-        font-size: 14px;
-    }
-
-    .place-container .country{
-        font-size: 12px;
-    }
+    
     .future-forecast .today{
         font-size: 20px;
     }
