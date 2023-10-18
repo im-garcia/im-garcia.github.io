@@ -1,4 +1,6 @@
 // Variables
+const searchEl = document.getElementById("search-box");
+const buttonEl = document.getElementById("search-btn");
 const timeEl = document.getElementById("time");
 const dateEl = document.getElementById("date");
 const currentWeatherItemsEl = document.getElementById("current-weather-items");
@@ -7,12 +9,33 @@ const countryEl = document.getElementById("country");
 const weatherForecastEl = document.getElementById("weather-forecast");
 const currentTempEl = document.getElementById("current-temp");
 
+
 // Días y meses
 const days = ["Domingo", "Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado"];
 const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
 
 // API Key
 const API_KEY = "4d4211a7206df1505bb64b08d835c07e";
+
+searchEl.addEventListener("keypress",function(event){
+    if (event.key === "Enter") {
+        event.preventDefault();
+        // Trigger the button element with a click
+        buttonEl.click();
+    }
+})
+
+buttonEl.addEventListener("click", function(){
+    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${searchEl.value}&appid=4d4211a7206df1505bb64b08d835c07e`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data);
+            fetchWeatherData(`https://api.openweathermap.org/data/2.5/weather?lat=${data[0].lat}&lon=${data[0].lon}&units=metric&appid=${API_KEY}`, showCityData, showWeatherData);
+            fetchWeatherData(`https://api.openweathermap.org/data/2.5/forecast?lat=${data[0].lat}&lon=${data[0].lon}&units=metric&appid=${API_KEY}`, showForecastData);
+        })
+    
+    .catch(err => alert("Ciudad equivocada"));
+})
 
 // Función para obtener datos meteorológicos
 function getWeatherData() {
@@ -149,14 +172,14 @@ function reorderPerToday(tempsPerDay) {
 
 // Función para convertir un timestamp a un día de la semana
 function convertTimeStampToDay(unixTimeStamp, timezone) {
-    const dateObj = new Date((unixTimeStamp + timezone) * 1000);
+    const dateObj = new Date((unixTimeStamp) * 1000);
     const day = dateObj.getUTCDay();
     return days[day];
 }
 
 // Función para convertir un timestamp a horas
 function convertTimeStampToHours(unixTimeStamp, timezone) {
-    const dateObj = new Date((unixTimeStamp + timezone) * 1000);
+    const dateObj = new Date((unixTimeStamp) * 1000);
     const hours = dateObj.getUTCHours();
     return hours.toString().padStart(2, '0');
 }

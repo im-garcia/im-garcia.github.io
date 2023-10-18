@@ -11,8 +11,8 @@
 <body>
     <div class="header">
         <div class="search-box">    
-            <input type="text" placeholder="Buscá por ciudad">   
-            <button type="submit">Buscar</button>   
+            <input id="search-box" type="text" placeholder="Buscá por ciudad">   
+            <button id="search-btn" type="submit">Buscar</button>   
         </div>   
         <div id="install-btn" style="display: none;">
             <button class="install-btn" type="submit">Instalar</button>
@@ -48,11 +48,11 @@
             Sin datos de los próximos 5 días
         </div>
     </div>
-    <script src="script.js"></script>
+    <script src="scripts/script.js"></script>
     <script>
         if ('serviceWorker' in navigator) {
           navigator.serviceWorker
-            .register('/service-worker.js')
+            .register('scripts/service-worker.js')
             .then((registration) => {
               console.log('Service Worker registrado con éxito:', registration);
             })
