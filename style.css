@@ -189,7 +189,7 @@ body{
     }
 }
 
-@media (orientation: landscape) and (hover: none) and (pointer: coarse){
+@media only screen and (max-height: 575px) and (orientation: landscape) and (hover: none) and (pointer: coarse){
     .current-info{
         flex-direction: column-reverse;
     }
