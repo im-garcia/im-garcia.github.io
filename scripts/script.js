@@ -80,7 +80,7 @@ function showWeatherData(data) {
         </div>
         <div class="weather-item">
             <div>Viento</div>
-            <div>${wind_speed} m/s</div>
+            <div>${Math.round(wind_speed * 3.6)} km/h</div>
         </div>
         <div class="weather-item">
             <div>Salida del Sol</div>
@@ -95,8 +95,8 @@ function showWeatherData(data) {
         <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="weather icon" class="w-icon">
         <div class="other">
             <div class="day">${convertTimeStampToDay(unixTimeStamp, timezone)}</div>
-            <div class="temp">${temp}&#176;C</div>
-            <div class="temp">ST ${feels_like}&#176;C</div>
+            <div class="temp">${Math.round(temp)}&#176;C</div>
+            <div class="temp">ST ${Math.round(feels_like)}&#176;C</div>
         </div>`;
 }
 
@@ -112,7 +112,7 @@ function showForecastData(data) {
     data.list.forEach((element) => {
         const day = convertTimeStampToDay(element.dt, timezone);
         if (day !== days[today]) {
-            tempsPerDay[day.toLowerCase()].push(element.main.temp);
+            tempsPerDay[day.toLowerCase()].push(Math.round(element.main.temp));
         }
     });
 
