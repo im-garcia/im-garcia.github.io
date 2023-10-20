@@ -1,39 +1,37 @@
-const cacheName = "tiempo-pwa-cache";
-const filesToCache = [
-  '/',
-  '/index.html',
-  '/style.css',
-  '/scripts/script.js',
-  '/images/favicon.ico',
-  '/assets/icons/icon-128x128.png',
-];
+const CACHE_NAME = "V1";
+const STATIC_CACHE_URLS = ["/", "/style.css", "/scripts/script.js", "/images/favicon.ico"];
 
-self.addEventListener("install", (e) => {
-  e.waitUntil(
-    caches.open(cacheName).then((cache) => {
-      return cache.addAll(filesToCache);
-    })
+self.addEventListener("install", event => {
+  console.log("Service Worker installing.");
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(cache => cache.addAll(STATIC_CACHE_URLS))
   );
 });
 
-self.addEventListener("activate", (e) => {
-  e.waitUntil(
-    caches.keys().then((keyList) => {
-      return Promise.all(
-        keyList.map((key) => {
-          if (key !== cacheName) {
-            return caches.delete(key);
-          }
-        })
-      );
-    })
+self.addEventListener("fetch", event => {
+  // Cache-First Strategy
+  event.respondWith(
+    caches
+      .match(event.request) 
+      .then(cached => cached || fetch(event.request)) 
+      .then(
+        response =>
+          cache(event.request, response) 
+            .then(() => response) 
+      )
   );
 });
 
-self.addEventListener("fetch", (e) => {
-  e.respondWith(
-    caches.match(e.request).then((response) => {
-      return response || fetch(e.request);
-    })
-  );
+function cache(request, response) {
+  if (response.type === "error" || response.type === "opaque") {
+    return Promise.resolve();
+  }
+
+  return caches
+    .open(CACHE_NAME)
+    .then(cache => cache.put(request, response.clone()));
+}
+
+self.addEventListener("activate", event => {
+  console.log("Service Worker activating.");
 });
