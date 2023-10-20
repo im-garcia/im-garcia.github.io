@@ -128,7 +128,7 @@ function showForecastData(data) {
     iconsPerDay = reorderPerToday(iconsPerDay);
 
     for (const day in tempsPerDay) {
-        if (tempsPerDay[day].length !== 0) {
+        if (tempsPerDay[day].length !== 0 && iconsPerDay[day].length !== 0) {
             otherDayForecast += `
                 <div class="weather-forecast-item">
                     <div class="day">${toTitleCase(day)}</div>
