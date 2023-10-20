@@ -1,6 +1,6 @@
 // Variables
-const searchEl = document.getElementById("search-box");
-const buttonEl = document.getElementById("search-btn");
+//const searchEl = document.getElementById("search-box");
+//const buttonEl = document.getElementById("search-btn");
 const botonInstalacion = document.getElementById('install-btn');
 const timeEl = document.getElementById("time");
 const dateEl = document.getElementById("date");
@@ -48,7 +48,7 @@ function getWeatherData() {
 
         // Obtener datos del pronóstico del tiempo
         fetchWeatherData(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`, showForecastData);
-    });
+    }, (error) => console.log("Sin acceso a la ubicación."));
 }
 
 // Función para mostrar datos de la ciudad

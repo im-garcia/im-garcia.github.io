@@ -1,11 +1,11 @@
-const cacheName = 'weather-pwa';
+const cacheName = 'tiempo-pwa';
 const filesToCache = [
   '/',
   'index.html',
   'style.css',
-  'favicon.ico',
-  'script.js',
-  'icon.png',
+  'images/favicon.ico',
+  'images/icon.png',
+  'scripts/script.js',
   // Agrega aquí otras rutas de archivos que necesitas cachear
 ];
 
