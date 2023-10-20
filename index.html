@@ -58,17 +58,17 @@
     </div>
     <script src="scripts/script.js"></script>
     <script>
-        if ('serviceWorker' in navigator) {
-          navigator.serviceWorker
-            .register('scripts/service-worker.js')
-            .then((registration) => {
-              console.log('Service Worker registrado con éxito:', registration);
+        if ("serviceWorker" in navigator) {
+        navigator.serviceWorker
+            .register("scripts/sw.js")
+            .then(serviceWorker => {
+            console.log("Service Worker registered: ", serviceWorker);
             })
-            .catch((error) => {
-              console.log('Error al registrar el Service Worker:', error);
+            .catch(error => {
+            console.error("Error registering the Service Worker: ", error);
             });
         }
-      </script>
+    </script>
 
 </body>
 </html>
