@@ -242,6 +242,7 @@ window.addEventListener('beforeinstallprompt', (event) => {
     window.deferredPrompt = event;
 
     // Muestra tu propio botón o banner de instalación
+    botonInstalacion.hidden = false;
     mostrarBotonInstalacion();
 });
   
@@ -249,22 +250,23 @@ function mostrarBotonInstalacion() {
 // Muestra tu propio botón o banner de instalación
 
     if (botonInstalacion) {
-        botonInstalacion.style.display = 'block';
         botonInstalacion.addEventListener('click', () => {
             // Muestra el mensaje de instalación cuando el botón es clicado
             const deferredPrompt = window.deferredPrompt;
             if (deferredPrompt) {
                 deferredPrompt.prompt();
-
+                botonInstalacion.disabled = true;
                 // Espera a que el usuario responda
                 deferredPrompt.userChoice.then((choiceResult) => {
                     if (choiceResult.outcome === 'accepted') {
                         console.log('Usuario aceptó la instalación');
+                        botonInstalacion.hidden = true;
                     } else {
                         console.log('Usuario rechazó la instalación');
                     }
 
                     // Limpia el evento
+                    botonInstalacion.disabled = false;
                     window.deferredPrompt = null;
                 });
             }
