@@ -1,37 +1,39 @@
-const CACHE_NAME = "V1";
-const STATIC_CACHE_URLS = ["/", "/style.css", "/scripts/script.js", "/images/favicon.ico"];
+const cacheName = "tiempo-pwa-cache";
+const filesToCache = [
+  '/',
+  '/index.html',
+  '/style.css',
+  '/scripts/script.js',
+  '/images/favicon.ico',
+  '/assets/icons/icon-128x128.png',
+];
 
-self.addEventListener("install", event => {
-  console.log("Service Worker installing.");
-  event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(STATIC_CACHE_URLS))
+self.addEventListener("install", (e) => {
+  e.waitUntil(
+    caches.open(cacheName).then((cache) => {
+      return cache.addAll(filesToCache);
+    })
   );
 });
 
-self.addEventListener("fetch", event => {
-  // Cache-First Strategy
-  event.respondWith(
-    caches
-      .match(event.request) // check if the request has already been cached
-      .then(cached => cached || fetch(event.request)) // otherwise request network
-      .then(
-        response =>
-          cache(event.request, response) // put response in cache
-            .then(() => response) // resolve promise with the network response
-      )
+self.addEventListener("activate", (e) => {
+  e.waitUntil(
+    caches.keys().then((keyList) => {
+      return Promise.all(
+        keyList.map((key) => {
+          if (key !== cacheName) {
+            return caches.delete(key);
+          }
+        })
+      );
+    })
   );
 });
 
-function cache(request, response) {
-  if (response.type === "error" || response.type === "opaque") {
-    return Promise.resolve(); // do not put in cache network errors
-  }
-
-  return caches
-    .open(CACHE_NAME)
-    .then(cache => cache.put(request, response.clone()));
-}
-
-self.addEventListener("activate", event => {
-  console.log("Service Worker activating.");
+self.addEventListener("fetch", (e) => {
+  e.respondWith(
+    caches.match(e.request).then((response) => {
+      return response || fetch(e.request);
+    })
+  );
 });
