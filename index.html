@@ -13,8 +13,9 @@
     <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <link rel="stylesheet" href="style.css">
     <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="icons/maskable_icon_x512.png">
     <script async src="https://cdn.jsdelivr.net/npm/pwacompat" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/png" href="assets/icons/icon-128x128.png" sizes="128x128" />
+    <link rel="icon" type="image/png" href="icons/icon-128x128.png" sizes="128x128" />
 </head>
 <body>
     <div class="header">
@@ -54,18 +55,19 @@
             Sin datos de los próximos 5 días
         </div>
     </div>
-    <script src="scripts/script.js"></script>
+    <script src="script.js"></script>
     <script>
         if ("serviceWorker" in navigator) {
-        navigator.serviceWorker
-            .register("scripts/sw.js")
+            navigator.serviceWorker
+            .register("sw.js")
             .then(serviceWorker => {
-            console.log("Service Worker registered: ", serviceWorker);
+                console.log("Service Worker registered: ", serviceWorker);
             })
             .catch(error => {
-            console.error("Error registering the Service Worker: ", error);
+                console.error("Error registering the Service Worker: ", error);
             });
-        }
+        } 
+        navigator.storage.persist()
     </script>
 
 </body>
