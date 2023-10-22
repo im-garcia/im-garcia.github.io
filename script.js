@@ -40,6 +40,23 @@ const API_KEY = "4d4211a7206df1505bb64b08d835c07e";
 
 // Función para obtener datos meteorológicos
 function getWeatherData() {
+    if ( navigator.permissions && navigator.permissions.query) {
+        //try permissions APIs first
+        navigator.permissions.query({ name: 'geolocation' }).then(function(result) {
+            // Will return ['granted', 'prompt', 'denied']
+            const permission = result.state;
+            if ( permission === 'granted' || permission === 'prompt' ) {
+                onGetCurrentLocation();
+            }
+        });
+      } else if (navigator.geolocation) {
+        //then Navigation APIs
+        onGetCurrentLocation();
+    }
+    
+}
+
+function onGetCurrentLocation(){
     navigator.geolocation.getCurrentPosition((success) => {
         const { latitude, longitude } = success.coords;
 
@@ -50,7 +67,6 @@ function getWeatherData() {
         fetchWeatherData(`https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=metric&appid=${API_KEY}`, showForecastData);
     }, (error) => console.log("Sin acceso a la ubicación."));
 }
-
 // Función para mostrar datos de la ciudad
 function showCityData(data) {
     const city = data.name;
